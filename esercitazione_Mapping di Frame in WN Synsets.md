@@ -47,7 +47,7 @@ Per ogni frame nel FrameSet è necessario assegnare un WN synset ai seguenti ele
 - **Frame Elements (FEs)** del frame; e 
 - **Lexical Units (LUs)**.
 
-I contesti di disambiguazione possono essere creati utilizzando le definizioni disponibili (sia quella del frame, sia quelle dei FEs), ottenendo `Ctx(w)`, il contesto per FN terms `w`.
+I contesti di disambiguazione possono essere creati utilizzando le definizioni disponibili (sia quella del frame, sia quelle dei FEs, sia quelle delle LUs), ottenendo `Ctx(w)`, il contesto per FN terms `w`.
 
 Per quanto riguarda il contesto dei sensi presenti in WN è possibile selezionare glosse ed esempi dei sensi, e dei loro rispettivi iponimi e iperonimi, in modo da avere più informazione, ottenendo quindi il contesto di disambiguazione `Ctx(s)`.
 
@@ -70,32 +70,33 @@ Il mapping può essere effettuato utilizzando (almeno) uno fra i due approcci de
   $$
   
   
-Ogni termine *w* appartenente ai FEs o alle LUs del frame viene mappato su un senso *s* di WordNet (*WN* nel seguito). Il mapping corrisponde all'argomento (su tutti i sensi *s* associati a *w* in WN) che massimizza la probabilità condizionata di ottenere il senso *s* dal termine *w*:
-  
 
-  $$
+Ogni termine *w* appartenente ai FEs o alle LUs del frame viene mappato su un senso *s* di WordNet (*WN* nel seguito). Il mapping corrisponde all'argomento (su tutti i sensi *s* associati a *w* in WN) che massimizza la probabilità condizionata di ottenere il senso *s* dal termine *w*:
+
+
+$$
   \DeclareMathOperator*{\argmax}{arg\,max}
   \mu(w)= \argmax_{s \in Senses_{WN}(w)} p(s|w) = \argmax_{s} p(s,w)
-  $$
-  
-  
+$$
+
+
 può essere calcolato come  *p(s,w)* con la formula
-  
 
-  $$
-  p(s,w) = \frac{score(s,w)}{\sum_{\substack{s'\in Senses_{WN}(w),\\w'\in Senses_{FN}(w)}}score(s',w')}.
-  $$
-  
-  
-Il contesto di disambiguazione dei termini *w* appartenenti a *FN*, riferito nella formula sottostante come *Ctx(w)*, è costruito utilizzando i termini (lemmatizzati e dopo filtraggio delle stopwords) presenti nelle descrizioni del frame e dei vari FEs.
-  
+
+$$
+p(s,w) = \frac{score(s,w)}{\sum_{\substack{s'\in Senses_{WN}(w),\\w'\in Senses_{FN}(w)}}score(s',w')}.
+$$
+
+
+Il contesto di disambiguazione dei termini *w* appartenenti a *FN*, riferito nella formula sottostante come *Ctx(w)*, è costruito utilizzando i termini (lemmatizzati e dopo filtraggio delle stopwords) presenti nelle descrizioni del frame e dei vari FEs e delle varie LUs.
+
 Lo *score(s,w)* è calcolato sfruttando i synset associati ai termini da mappare e al loro contesto di disambiguazione. In particolare, si tratta di costruire il sottografo di *WN* contenente i synset presenti in tutti i path di lunghezza *l  ≤ L* (sperimentare per diversi *L* a partire da *L=3*) fra i possibili sensi dei termini del contesto di disambiguazione e *s*; la funzione che valuta l'importanza del senso *s* per il termine *w* calcola la seguente funzione:
-  
 
-  $$
+
+$$
   score(s,w)=\sum_{cw \in Ctx(w)} \sum_{s' \in Senses_{WN}(cw)}\sum_{p \in paths_{WN}(s,s')}e^{-(len(p)-1)}
-  $$
-  
+$$
+
 
 
 
