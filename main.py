@@ -35,7 +35,7 @@ def get_contexts_frames_list(frames):
         contexts_frames_list.append(contextsFrame) 
     return contexts_frames_list
 
-#restituisce un senso di WordNet per il frameNet_name(frame name, frame element name, lexical unit name)
+#restituisce un senso di WordNet per il wordnet_name(frame name, frame element name, lexical unit name)
 #che massimizza lo score
 def compute_score(wordnet_name, frameNet_context):
     synsets = wn.synsets(wordnet_name)

@@ -1,0 +1,62 @@
+student: Altamura
+
+=========================
+FRAME ID:  153
+FRAME NAME:  Process_stopped_state
+
+FRAME SYNSET:  
+ Synset('process.n.06')
+
+FRAME ELEMENTS SYNSETS:  
+ {'Process': Synset('process.n.06'), 'Time': Synset('time.n.05'), 'Duration': Synset('duration.n.03')}
+
+LEXICAL UNTIS SYNSETS:  
+ {}
+=========================
+FRAME ID:  10
+FRAME NAME:  Transitive_action
+
+FRAME SYNSET:  
+ Synset('action.n.01')
+
+FRAME ELEMENTS SYNSETS:  
+ {'Agent': Synset('agent.n.01'), 'Patient': Synset('patient.n.01'), 'Event': Synset('event.n.01'), 'Depictive': Synset('delineative.s.01'), 'Result': Synset('consequence.n.01'), 'Means': Synset('means.n.01'), 'Manner': Synset('manner.n.01'), 'Time': Synset('time.n.01'), 'Place': Synset('topographic_point.n.01'), 'Cause': Synset('cause.n.01')}
+
+LEXICAL UNTIS SYNSETS:  
+ {}
+=========================
+FRAME ID:  2411
+FRAME NAME:  Personal_success
+
+FRAME SYNSET:  
+ Synset('success.n.02')
+
+FRAME ELEMENTS SYNSETS:  
+ {'Person': Synset('person.n.01'), 'Time': Synset('time.n.02'), 'Degree': Synset('degree.n.02'), 'Endeavor': Synset('attempt.n.01'), 'Explanation': Synset('explanation.n.01'), 'Field': Synset('field.n.01')}
+
+LEXICAL UNTIS SYNSETS:  
+ {'success [person].n': Synset('achiever.n.01'), 'success [event].n': Synset('achiever.n.01'), 'success [state].n': Synset('success.n.03'), 'successful.a': Synset('successful.a.01'), 'make it.v': None, 'arrive.v': Synset('arrive.v.01'), 'succeed.v': Synset('succeed.v.01')}
+=========================
+FRAME ID:  1684
+FRAME NAME:  Scrutinizing_for
+
+FRAME SYNSET:  
+ Synset('size_up.v.01')
+
+FRAME ELEMENTS SYNSETS:  
+ {'Cognizer': None, 'Ground': Synset('land.n.04'), 'Phenomenon': Synset('phenomenon.n.01'), 'Manner': Synset('manner.n.01'), 'Means': Synset('means.n.01'), 'Degree': Synset('degree.n.01'), 'Purpose': Synset('purpose.n.01'), 'Instrument': Synset('instrument.n.02')}
+
+LEXICAL UNTIS SYNSETS:  
+ {}
+=========================
+FRAME ID:  2576
+FRAME NAME:  Cache
+
+FRAME SYNSET:  
+ Synset('hoard.n.01')
+
+FRAME ELEMENTS SYNSETS:  
+ {'Cache': Synset('cache.n.03'), 'Resource': Synset('resource.n.01'), 'Use': Synset('use.n.01'), 'Possessor': Synset('owner.n.02'), 'Descriptor': Synset('form.n.01')}
+
+LEXICAL UNTIS SYNSETS:  
+ {'cache.n': Synset('hoard.n.01'), 'stash.n': Synset('hoard.n.01')}

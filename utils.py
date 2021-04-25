@@ -9,7 +9,6 @@ import string
 from nltk.tokenize import word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
 import hashlib
-import random
 from random import randint
 from random import seed
 from nltk.corpus import framenet as fn
@@ -50,7 +49,7 @@ class ContextsFrame:
         print("FRAME NAME: ",self.get_frame_name())
         print("\nFRAME CONTEXT: ","\n",self.get_frame_context())
         print("\nFRAME ELEMENTS CONTEXTS: ","\n", self.get_frame_elements_contexts())
-        print("\nLEXICAL UNTIS CONTEXTS: ","\n", self.get_lexical_units_contexts())
+        print("\nLEXICAL UNITS CONTEXTS: ","\n", self.get_lexical_units_contexts())
         
     
 #Risultati di WordNet.
@@ -84,7 +83,7 @@ class SynsetsFrame:
         print("FRAME NAME: ",self.get_frame_name())
         print("\nFRAME SYNSET: ",self.get_frame_synset())
         print("\nFRAME ELEMENTS SYNSETS: ","\n", self.get_frame_elements_synsets())
-        print("\nLEXICAL UNTIS SYNSETS: ","\n", self.get_lexical_units_synsets())
+        print("\nLEXICAL UNITS SYNSETS: ","\n", self.get_lexical_units_synsets())
 
 def print_frames_with_IDs():
     for x in fn.frames():
@@ -183,7 +182,7 @@ def get_regent(sentence):
             try:
                 chunk = chunks[0]
                 regent = chunk.root.text
-            except IndexError:
+            except IndexError: #non ci sono nomi
                 regent = sentence.split(" ")[0]
         else:
              regent = sentence
