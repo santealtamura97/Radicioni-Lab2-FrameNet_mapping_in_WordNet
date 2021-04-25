@@ -68,6 +68,23 @@ class SynsetsFrame:
         self.frame_synset = frame_synset
         self.frame_elements_synsets = frame_elements_synsets
         self.lexical_units_synsets = lexical_units_synsets
+    def get_frame_elements_synsets(self):
+        return self.frame_elements_synsets
+    def get_lexical_units_synsets(self):
+        return self.lexical_units_synsets
+    def get_frame_id(self):
+        return self.frame_id
+    def get_frame_name(self):
+        return self.frame_name
+    def get_frame_synset(self):
+        return self.frame_synset
+    #stampa fatta al solo scopo di conoscere le struttura interna della classe
+    def printSynsetsFrame(self):
+        print("FRAME ID: ", self.get_frame_id())
+        print("FRAME NAME: ",self.get_frame_name())
+        print("\nFRAME SYNSET: ",self.get_frame_synset())
+        print("\nFRAME ELEMENTS SYNSETS: ","\n", self.get_frame_elements_synsets())
+        print("\nLEXICAL UNTIS SYNSETS: ","\n", self.get_lexical_units_synsets())
 
 def print_frames_with_IDs():
     for x in fn.frames():
@@ -179,7 +196,10 @@ def get_regent(sentence):
 #il punto e il PoS che segue
 def remove_pos_lu(lexical_unit_name):
     new_lexical_unit_name = lexical_unit_name.split(".")[0]
-    return new_lexical_unit_name
+    
+    #Remove [...] from lexical_unit_name
+    return new_lexical_unit_name.split(" [")[0]
+    
     
 
 #Rimuove le stopwords da una lista di parola
@@ -225,12 +245,6 @@ def tokenize_sentence(sentence):
         elif (tag[1][:2] == "JJ"):
              words_list.append(lmtzr.lemmatize(tag[0], pos = wn.ADJ))
     return words_list
-    """
-    words_list = []
-    lmtzr = WordNetLemmatizer()
-    for word in word_tokenize(sentence):
-        words_list.append(lmtzr.lemmatize(word))
-    return words_list"""
     
 
 def pre_processing(sentence):

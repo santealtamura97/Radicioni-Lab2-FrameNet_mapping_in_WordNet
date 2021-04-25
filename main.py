@@ -37,8 +37,7 @@ def get_contexts_frames_list(frames):
 
 #restituisce un senso di WordNet per il frameNet_name(frame name, frame element name, lexical unit name)
 #che massimizza lo score
-def compute_score(frameNet_name, frameNet_context):
-    wordnet_name = utils.get_regent(frameNet_name)
+def compute_score(wordnet_name, frameNet_context):
     synsets = wn.synsets(wordnet_name)
     if synsets == []:
         return None
@@ -58,25 +57,41 @@ def get_score(context1,context2):
     
 
 def get_synsets_frames_list(contexts_frame_list):
+    synsets_frames_list = []
     for contextsFrame in contexts_frame_list:
-        frame_synset = compute_score(contextsFrame.get_frame_name(),
+        frame_id = contextsFrame.get_frame_id()
+        frame_name = contextsFrame.get_frame_name()
+        frame_synset = compute_score(utils.get_regent(frame_name),
                                      contextsFrame.get_frame_context())
+        
         frame_elements_synsets = dict()
-        #lexical_units_synsets = dict()
+        lexical_units_synsets = dict()
+        
         frame_elements_contexts = contextsFrame.get_frame_elements_contexts()
         for frame_element_name in frame_elements_contexts:
-            score = compute_score(frame_element_name, frame_elements_contexts[frame_element_name])
+            wordnet_name = utils.get_regent(frame_element_name)
+            score = compute_score(wordnet_name, frame_elements_contexts[frame_element_name])
             if not type(score) == None:
                frame_elements_synsets[frame_element_name] = score
-               
-        #test
-        print("=====================")
-        print(frame_synset)
-        print(frame_elements_synsets)
         
+        lexical_units_contexts = contextsFrame.get_lexical_units_contexts()
+        for lexical_unit_name in lexical_units_contexts:
+            wordnet_name = utils.remove_pos_lu(lexical_unit_name)
+            score = compute_score(wordnet_name, lexical_units_contexts[lexical_unit_name])
+            if not type(score) == None:
+                lexical_units_synsets[lexical_unit_name] = score
+    
+        synsetsFrame = utils.SynsetsFrame(frame_id, frame_name, frame_synset, frame_elements_synsets, lexical_units_synsets)
+        synsets_frames_list.append(synsetsFrame)
+    return synsets_frames_list
 def main():
-    #Lista di oggetti ti tipo ContextsFrame
+    #Lista di oggetti di tipo ContextsFrame
     contexts_frames_list = get_contexts_frames_list(utils.getFrameSetForStudent(SURNAME))
-    get_synsets_frames_list(contexts_frames_list)
+    
+    #Lista di oggetti di tipo SynsetsFrame
+    synsets_frames_list = get_synsets_frames_list(contexts_frames_list)
+    for synsets_frame in synsets_frames_list:
+        print("=========================")
+        synsets_frame.printSynsetsFrame()
     
 main()
