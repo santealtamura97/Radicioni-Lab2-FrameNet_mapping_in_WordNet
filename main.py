@@ -87,11 +87,13 @@ def get_synsets_frames_list(contexts_frame_list):
 def main():
     #Lista di oggetti di tipo ContextsFrame
     contexts_frames_list = get_contexts_frames_list(utils.getFrameSetForStudent(SURNAME))
-    
+    for contexts_frame in contexts_frames_list:
+        print("=========================")
+        contexts_frame.printContextsFrame()
     #Lista di oggetti di tipo SynsetsFrame
     synsets_frames_list = get_synsets_frames_list(contexts_frames_list)
-    for synsets_frame in synsets_frames_list:
-        print("=========================")
-        synsets_frame.printSynsetsFrame()
+    #for synsets_frame in synsets_frames_list:
+        #print("=========================")
+        #synsets_frame.printSynsetsFrame()
     
 main()

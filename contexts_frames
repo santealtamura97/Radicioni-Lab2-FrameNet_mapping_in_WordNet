@@ -1,0 +1,63 @@
+
+student: Altamura
+
+=========================
+FRAME ID:  153
+FRAME NAME:  Process_stopped_state
+
+FRAME CONTEXT:  
+ {'frame', 'point', 'resume', 'refer', 'continue', 'time', 'event', 'process', 'length', 'x-schema', 'entity'}
+
+FRAME ELEMENTS CONTEXTS:  
+ {'Process': {'event'}, 'Time': {'process', 'point', 'continue'}, 'Duration': {'process', 'length', 'resume', 'time'}}
+
+LEXICAL UNITS CONTEXTS:  
+ {}
+=========================
+FRAME ID:  10
+FRAME NAME:  Transitive_action
+
+FRAME CONTEXT:  
+ {'/def-root', 'frame', 'affect', 'depictive', 'intentional', 'specific', 'deliberately', 'characterize', 'characteristic', 'perform', 'enable', 'cover', 'abstract', 'secondary', 'indicate', 'describe', 'level', 'quietly', 'phrase', 'change', 'patient.', 'presumptuously', 'general', 'compare', 'time', 'event', 'inherit', 'eagerly', 'action', 'lower-level', 'fes', 'patient', 'salient', 'agent', 'place', 'participant', 'loudly', 'include', 'description', 'addition', 'entity', 'carefully', 'transitive', 'result', 'undergo', 'location', 'coldly'}
+
+FRAME ELEMENTS CONTEXTS:  
+ {'Agent': {'agent', 'entity'}, 'Patient': {'undergo', 'patient', 'change', 'entity'}, 'Event': {'agent', 'event', 'entity'}, 'Depictive': {'phrase', 'depictive', 'event', 'participant', 'describe'}, 'Result': {'transitive', 'result', 'action'}, 'Means': {'/def-root', 'patient.', 'perform', 'agent', 'enable'}, 'Manner': {'affect', 'intentional', 'specific', 'deliberately', 'characteristic', 'cover', 'secondary', 'indicate', 'quietly', 'presumptuously', 'general', 'compare', 'event', 'eagerly', 'action', 'fes', 'salient', 'agent', 'loudly', 'addition', 'include', 'description', 'carefully', 'coldly'}, 'Time': {'place', 'time', 'event'}, 'Place': {'location', 'place', 'event'}, 'Cause': {'patient', 'affect', 'event'}}
+
+LEXICAL UNITS CONTEXTS:  
+ {}
+=========================
+FRAME ID:  2411
+FRAME NAME:  Personal_success
+
+FRAME CONTEXT:  
+ {'expect', 'frame', 'note', 'group', 'year', 'determine', 'developmental', 'endeavor', 'extremely', 'successful_action', 'finally', 'degree', 'huge', 'involve', 'wildly', 'age', 'success', 'enjoy', 'effort', 'accord', 'level', 'successful', 'framenet', 'achieves', 'path', 'long', 'business', 'period', 'well', 'customer', 'time', 'event', 'prosperous', 'person', 'prosperity', 'winfried', 'qualification', 'renown', 'relate', 'career', 'name=', 'area', 'apple', 'hardship', 'complete', 'term', 'banking', 'artist', 'achieve', 'and/or', 'participant', 'include', 'development', 'entity', 'explanation', 'fex', 'traverse', '84', 'fn', 'ipad', 'lus', 'partipant', 'invoke', 'goal', 'distinguish', 'hard', 'appropriate', 'lead', 'sentient', 'work'}
+
+FRAME ELEMENTS CONTEXTS:  
+ {'Person': {'group', 'well', 'endeavor', 'prosperous', 'involve', 'age', 'success', 'sentient'}, 'Time': {'successful', 'year', '84', 'determine', 'time', 'hard', 'finally', 'artist', 'work', 'entity'}, 'Degree': {'successful', 'achieves', 'career', 'extremely', 'qualification', 'success', 'level', 'entity'}, 'Endeavor': {'successful', 'career', 'event', 'person', 'prosperity', 'involve', 'renown', 'lead'}, 'Explanation': {'explanation', 'successful', 'ipad', 'endeavor', 'apple', 'customer', 'goal', 'achieve', 'person', 'prosperity', 'renown', 'wildly'}, 'Field': {'successful', 'name=', 'fex', 'area', 'business', 'achieve', 'person', 'winfried', 'success'}}
+
+LEXICAL UNITS CONTEXTS:  
+ {'success [person].n': {'fn', 'endeavor', 'achieve', 'person', 'prosperity', 'renown', 'effort'}, 'success [event].n': {'expect', 'fn', 'long', 'partipant', 'term', 'event', 'achieve', 'degree', 'prosperity', 'renown', 'participant'}, 'success [state].n': {'fn', 'endeavor', 'prosperity', 'renown', 'appropriate'}, 'successful.a': {'fn', 'endeavor', 'goal', 'prosperity', 'renown', 'accord'}, 'make it.v': {'prosperity', 'fn', 'renown', 'achieve'}, 'arrive.v': {'fn', 'period', 'time', 'achieve', 'prosperity', 'renown'}, 'succeed.v': {'fn', 'achieve', 'prosperity', 'and/or', 'renown'}}
+=========================
+FRAME ID:  1684
+FRAME NAME:  Scrutinizing_for
+
+FRAME CONTEXT:  
+ {'temperature', 'transfer', 'determine', 'alert', 'inspect', 'silicon', 'mushroom', 'scrutinize', 'degree', 'crack', 'examine', 'bring', 'mail', 'identify', 'ground', 'diode', 'interact', 'presence', 'search', 'calibrated', 'event', 'background', 'direct', 'pay', 'attention', 'scrutiny', 'phenomenon', 'manner', 'action', 'module', 'outcome', 'allow', 'hop', 'order', 'glass', 'entity', 'fe', 'wood', 'context', 'closely', 'controller', 'monitor', 'discover', 'serve', 'cognizer', 'accomplish'}
+
+FRAME ELEMENTS CONTEXTS:  
+ {'Cognizer': {'discover', 'crack', 'examine', 'cognizer', 'pay', 'attention', 'order', 'glass', 'entity'}, 'Ground': {'phenomenon', 'search', 'context', 'wood', 'mushroom', 'serve', 'glass', 'examine', 'crack', 'cognizer', 'background', 'pay', 'attention', 'ground'}, 'Phenomenon': {'search', 'alert', 'wood', 'mushroom', 'glass', 'crack', 'examine', 'cognizer', 'ground', 'entity'}, 'Manner': {'manner', 'fe', 'scrutinize', 'cognizer', 'identify', 'ground'}, 'Means': {'action', 'scrutinize', 'allow', 'cognizer', 'ground'}, 'Degree': {'fe', 'degree', 'scrutinize', 'cognizer', 'identify', 'ground'}, 'Purpose': {'transfer', 'phenomenon', 'determine', 'inspect', 'event', 'module', 'outcome', 'hop', 'cognizer', 'bring', 'mail'}, 'Instrument': {'interact', 'temperature', 'calibrated', 'silicon', 'controller', 'diode', 'monitor', 'cognizer', 'accomplish', 'direct', 'scrutiny', 'ground', 'entity'}}
+
+LEXICAL UNITS CONTEXTS:  
+ {}
+=========================
+FRAME ID:  2576
+FRAME NAME:  Cache
+
+FRAME CONTEXT:  
+ {'roman', 'arm', 'resources', 'future', 'cache', 'tea', 'possess', 'huge', 'question', 'doubt', 'school', 'resource', 'member', 'possessor', 'existence', 'move', 'large', 'century', 'hidden', 'eventually', 'eighteenth', 'denote', 'chest', 'conceal', 'people', 'sweet', 'police', 'safe', 'commodity', 'uncover', 'defect', 'semtex', 'london', 'britain', 'supply', 'good', 'entity', 'fe', 'fn', 'stash', 'secret', 'coin', 'money', 'discover', 'attack', 'characterization', 'east', 'location', 'sweater', 'store'}
+
+FRAME ELEMENTS CONTEXTS:  
+ {'Cache': {'fe', 'sweet', 'resources', 'cache', 'sweater', 'denote', 'conceal'}, 'Resource': {'roman', 'century', 'large', 'coin', 'cache', 'commodity', 'uncover', 'good', 'eighteenth', 'britain', 'store'}, 'Use': {'arm', 'future', 'cache', 'discover', 'attack', 'school', 'resource'}, 'Possessor': {'stash', 'cache', 'possess', 'eventually', 'entity'}, 'Descriptor': {'london', 'police', 'cache', 'people', 'discover', 'tea', 'characterization', 'huge', 'question', 'semtex', 'east', 'chest', 'resource'}}
+
+LEXICAL UNITS CONTEXTS:  
+ {'cache.n': {'secret', 'supply', 'fn'}, 'stash.n': {'supply', 'fn'}}
