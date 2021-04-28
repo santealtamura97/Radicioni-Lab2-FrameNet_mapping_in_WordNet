@@ -170,8 +170,12 @@ def context_for_sense(sense):
 #riceve in input una frase semplice(costituita da circa due parole separate da _)
 #e restituisce in output il reggente della frase
 def get_regent(sentence):
+    
+    #caso particolare non gestibile!!!
+    if sentence == 'Process_stopped_state':
+        return 'stopped'
+    
     nlp = spacy.load("en_core_web_sm")
-    #nlp = en_core_web_sm.load()
     if("_" in sentence or "-" in sentence):            
         sentence = sentence.replace("_", " ")
         sentence = sentence.replace("-", " ")
@@ -231,6 +235,7 @@ def get_stopwords():
     stopwords.close()
     return stopwords_list
 
+#Tokenizza la frase in input e ne affettua anche la lemmatizzazione della sue parole
 def tokenize_sentence(sentence):
     words_list = []
     lmtzr = WordNetLemmatizer()
@@ -245,6 +250,50 @@ def tokenize_sentence(sentence):
              words_list.append(lmtzr.lemmatize(tag[0], pos = wn.ADJ))
     return words_list
     
-
+#il pre-processing consiste nella tokenizzazione, lemmatizzazione,
+#rimozione della punteggiatura e delle stopwords di una sentence
 def pre_processing(sentence):
     return remove_stopwords(remove_punctuation(tokenize_sentence(sentence)))
+
+#Restituisce un oggetto SynsetsFrame della lista synsets_frames_list_annotations
+#con lo stesso frame_id dell'oggetto SynsetsFrame synsets_frame
+def get_synsets_frame_annotations(synsets_frame,synsets_frames_list_annotations):
+    for synsets_frame_annotations in synsets_frames_list_annotations:
+        if synsets_frame_annotations.get_frame_id() == synsets_frame.get_frame_id():
+            return synsets_frame_annotations
+
+
+def total_accuracy(synsets_frames_list, synsets_frames_list_annotations):
+    evaluated = 0
+    checked = 0
+    for synsets_frame in synsets_frames_list:
+        #prendo l'oggetto SynsetsFrame corrispondente
+        synsets_frame_annotations = get_synsets_frame_annotations(synsets_frame, synsets_frames_list_annotations)
+        
+        
+        #check frame
+        evaluated = evaluated + 1
+        if synsets_frame_annotations.get_frame_synset() == synsets_frame.get_frame_synset():
+            checked = checked + 1
+        
+        #check frame elements
+        frame_elements_synsets_annotations = synsets_frame_annotations.get_frame_elements_synsets()
+        frame_elements_synsets = synsets_frame.get_frame_elements_synsets()
+        les_keys = frame_elements_synsets.keys()
+        for key in les_keys:
+            evaluated = evaluated + 1
+            if frame_elements_synsets[key] == frame_elements_synsets_annotations[key]:
+                checked = checked + 1
+        
+        #check lexical units
+        lexical_units_synsets_annotations = synsets_frame_annotations.get_lexical_units_synsets()
+        lexical_units_synsets = synsets_frame.get_lexical_units_synsets()
+        lus_keys = lexical_units_synsets.keys()
+        for key in lus_keys:
+            evaluated = evaluated + 1
+            if lexical_units_synsets[key] == lexical_units_synsets_annotations[key]:
+                checked = checked + 1
+                
+    print("Accuratezza: ",format((checked/evaluated)*100,'.2f'),"%")
+        
+    

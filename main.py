@@ -6,9 +6,10 @@ Created on Sat Apr 17 11:24:11 2021
 @author: santealtamura
 """
 
-from nltk.corpus import framenet as fn
+
 from nltk.corpus import wordnet as wn
 import utils
+import annotations
 
 SURNAME = 'Altamura'
 
@@ -55,7 +56,10 @@ def compute_score(wordnet_name, frameNet_context):
 def get_score(context1,context2):
     return len(context1.intersection(context2)) + 1
     
-
+#Restituisce i risultati per quanto riguarda le associazioni di wordnet ai sensi di FrameNet
+#quindi restituisce una lista di oggetti SynsetsFrame
+#prende in input la lista di oggetti ContextsFrame che contiene i contesti dei
+#frame elements, lexical untis, frame name associati ad un frame
 def get_synsets_frames_list(contexts_frame_list):
     synsets_frames_list = []
     for contextsFrame in contexts_frame_list:
@@ -71,29 +75,32 @@ def get_synsets_frames_list(contexts_frame_list):
         for frame_element_name in frame_elements_contexts:
             wordnet_name = utils.get_regent(frame_element_name)
             score = compute_score(wordnet_name, frame_elements_contexts[frame_element_name])
-            if not type(score) == None:
+            if not score is None:
                frame_elements_synsets[frame_element_name] = score
         
         lexical_units_contexts = contextsFrame.get_lexical_units_contexts()
         for lexical_unit_name in lexical_units_contexts:
             wordnet_name = utils.remove_pos_lu(lexical_unit_name)
             score = compute_score(wordnet_name, lexical_units_contexts[lexical_unit_name])
-            if not type(score) == None:
+            if not score is None:
                 lexical_units_synsets[lexical_unit_name] = score
     
         synsetsFrame = utils.SynsetsFrame(frame_id, frame_name, frame_synset, frame_elements_synsets, lexical_units_synsets)
         synsets_frames_list.append(synsetsFrame)
     return synsets_frames_list
+
 def main():
-    #Lista di oggetti di tipo ContextsFrame
+    
+    #Lista di oggetti di tipo ContextsFrame(vedere utils.ContextsFrame)
     contexts_frames_list = get_contexts_frames_list(utils.getFrameSetForStudent(SURNAME))
-    for contexts_frame in contexts_frames_list:
-        print("=========================")
-        contexts_frame.printContextsFrame()
-    #Lista di oggetti di tipo SynsetsFrame
+      
+    #Lista di oggetti di tipo SynsetsFrame (vedere utils.Synsetsframe)
     synsets_frames_list = get_synsets_frames_list(contexts_frames_list)
-    #for synsets_frame in synsets_frames_list:
-        #print("=========================")
-        #synsets_frame.printSynsetsFrame()
+    
+    #Lista di oggetti di tipo SynsetsFrame (ma riguarda le annotazioni umane)
+    synsets_frames_list_annotations = annotations.get_synsets_frames_list_annotations()
+    
+    #testing
+    utils.total_accuracy(synsets_frames_list, synsets_frames_list_annotations)
     
 main()
