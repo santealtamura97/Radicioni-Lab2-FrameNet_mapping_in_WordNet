@@ -15,6 +15,7 @@ from nltk.corpus import framenet as fn
 import spacy
 from nltk.corpus import wordnet as wn
 import nltk
+import re
 #spacy.cli.download("en_core_web_sm")
 
 #Contesti associati ad un Frame. Struttura dati che contiene
@@ -50,6 +51,7 @@ class ContextsFrame:
         print("\nFRAME CONTEXT: ","\n",self.get_frame_context())
         print("\nFRAME ELEMENTS CONTEXTS: ","\n", self.get_frame_elements_contexts())
         print("\nLEXICAL UNITS CONTEXTS: ","\n", self.get_lexical_units_contexts())
+        print("_________________________________________")
         
     
 #Risultati di WordNet.
@@ -84,6 +86,7 @@ class SynsetsFrame:
         print("\nFRAME SYNSET: ",self.get_frame_synset())
         print("\nFRAME ELEMENTS SYNSETS: ","\n", self.get_frame_elements_synsets())
         print("\nLEXICAL UNITS SYNSETS: ","\n", self.get_lexical_units_synsets())
+        print("_________________________________________")
 
 def print_frames_with_IDs():
     for x in fn.frames():
@@ -202,38 +205,21 @@ def remove_pos_lu(lexical_unit_name):
     
     #Remove [...] from lexical_unit_name
     return new_lexical_unit_name.split(" [")[0]
-    
-    
 
-#Rimuove le stopwords da una lista di parola
+
+    
+"""Funzioni di supporto"""
+
+#il pre-processing consiste nella tokenizzazione, lemmatizzazione,
+#rimozione della punteggiatura e delle stopwords di una sentence
+def pre_processing(sentence):
+    return set(remove_stopwords(tokenize_sentence(remove_punctuation(sentence))))
+
+#Effettua la lemmatizzazione e rimuove le stowords da una lista di parole
 def remove_stopwords(words_list):
     stopwords_list = get_stopwords()
-    new_words_list = []
-    for word in words_list:
-        word_lower = word.lower()
-        if word_lower not in stopwords_list:
-            new_words_list.append(word_lower)
-    return new_words_list
+    return [value for value in words_list if value not in stopwords_list]
 
-#Rimuove la punteggiatura da una lista di parole
-def remove_punctuation(words_list):
-    new_words_list = []
-    for word in words_list:
-        temp = word
-        if not temp.strip(string.punctuation) == "":
-            new_word = word.lower()
-            new_word = new_word.replace("'","")
-            new_words_list.append(new_word)
-    return new_words_list
-
-#Restituisce la l'insieme di stopwords dal file delle stopwords
-def get_stopwords():
-    stopwords = open("stop_words_FULL.txt", "r")
-    stopwords_list = []
-    for word in stopwords:
-        stopwords_list.append(word.replace('\n', ''))
-    stopwords.close()
-    return stopwords_list
 
 #Tokenizza la frase in input e ne affettua anche la lemmatizzazione della sue parole
 def tokenize_sentence(sentence):
@@ -249,11 +235,24 @@ def tokenize_sentence(sentence):
         elif (tag[1][:2] == "JJ"):
              words_list.append(lmtzr.lemmatize(tag[0], pos = wn.ADJ))
     return words_list
-    
-#il pre-processing consiste nella tokenizzazione, lemmatizzazione,
-#rimozione della punteggiatura e delle stopwords di una sentence
-def pre_processing(sentence):
-    return remove_stopwords(remove_punctuation(tokenize_sentence(sentence)))
+
+#Restituisce la l'insieme di stopwords dal file delle stopwords
+def get_stopwords():
+    stopwords = open("stop_words_FULL.txt", "r")
+    stopwords_list = []
+    for word in stopwords:
+        stopwords_list.append(word.replace('\n', ''))
+    stopwords.close()
+    return stopwords_list
+
+#Rimuove la punteggiatura da una sentence
+#Restituisce la sentence senza punteggiature
+def remove_punctuation(sentence):
+    return re.sub(r'[^\w\s]','',sentence)
+
+
+
+"""Funzioni per la valutazione dei risultati"""
 
 #Restituisce un oggetto SynsetsFrame della lista synsets_frames_list_annotations
 #con lo stesso frame_id dell'oggetto SynsetsFrame synsets_frame
@@ -261,7 +260,6 @@ def get_synsets_frame_annotations(synsets_frame,synsets_frames_list_annotations)
     for synsets_frame_annotations in synsets_frames_list_annotations:
         if synsets_frame_annotations.get_frame_id() == synsets_frame.get_frame_id():
             return synsets_frame_annotations
-
 
 def total_accuracy(synsets_frames_list, synsets_frames_list_annotations):
     evaluated = 0

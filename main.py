@@ -40,7 +40,7 @@ def get_contexts_frames_list(frames):
 #che massimizza lo score
 def compute_score(wordnet_name, frameNet_context):
     synsets = wn.synsets(wordnet_name)
-    if synsets == []:
+    if synsets == []: #se non ci sono synset disponibili
         return None
     #prende il synset con lo score più alto
     max_score = 0
@@ -97,8 +97,20 @@ def main():
     #Lista di oggetti di tipo SynsetsFrame (vedere utils.Synsetsframe)
     synsets_frames_list = get_synsets_frames_list(contexts_frames_list)
     
+    print("=========================")
+    print("RISULTATI SISTEMA: ")
+    for item in synsets_frames_list:
+        item.printSynsetsFrame()
+    
     #Lista di oggetti di tipo SynsetsFrame (ma riguarda le annotazioni umane)
     synsets_frames_list_annotations = annotations.get_synsets_frames_list_annotations()
+    
+    print("=========================")
+    print("ANNOTAZIONI UMANE: ")
+    for item in synsets_frames_list_annotations:
+        item.printSynsetsFrame()
+    
+    
     
     #testing
     utils.total_accuracy(synsets_frames_list, synsets_frames_list_annotations)
