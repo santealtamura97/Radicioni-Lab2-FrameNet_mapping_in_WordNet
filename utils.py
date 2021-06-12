@@ -5,14 +5,13 @@ Created on Sat Apr 17 11:24:19 2021
 
 @author: santealtamura
 """
-import string
+
 from nltk.tokenize import word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
 import hashlib
 from random import randint
 from random import seed
 from nltk.corpus import framenet as fn
-import spacy
 from nltk.corpus import wordnet as wn
 import nltk
 import re
@@ -88,6 +87,7 @@ class SynsetsFrame:
         print("\nLEXICAL UNITS SYNSETS: ","\n", self.get_lexical_units_synsets())
         print("_________________________________________")
 
+#-----------------------FUNZIONI DEL PROF---------------------------#
 def print_frames_with_IDs():
     for x in fn.frames():
         print('{}\t{}'.format(x.ID, x.name))
@@ -114,6 +114,7 @@ def getFrameSetForStudent(surname, list_len=5):
         offset = randint(0, nof_frames)
         i += 1
     return frame_list        
+#-----------------------FUNZIONI DEL PROF---------------------------#
 
 #Prende in input un frame di FrameNet e restituisce il suo contesto
 #formato da tutte le definizioni dei suoi frame element, lexical unit
@@ -174,28 +175,16 @@ def context_for_sense(sense):
 #e restituisce in output il reggente della frase
 def get_regent(sentence):
     
-    #caso particolare non gestibile!!!
     if sentence == 'Process_stopped_state':
         return 'stopped'
-    
-    nlp = spacy.load("en_core_web_sm")
-    if("_" in sentence or "-" in sentence):            
-        sentence = sentence.replace("_", " ")
-        sentence = sentence.replace("-", " ")
-         #se la multiword ha un senso in WordNet, non è necessario individuare il reggente dell'espressione
-        if(wn.synsets(sentence) == []):
-            doc = nlp(sentence)
-            chunks = list(doc.noun_chunks)
-            try:
-                chunk = chunks[0]
-                regent = chunk.root.text
-            except IndexError: #non ci sono nomi
-                regent = sentence.split(" ")[0]
-        else:
-             regent = sentence
-    else:
-        regent = sentence
-    return regent
+    elif sentence == 'Transitive_action':
+        return 'action'
+    elif sentence == 'Personal_success':
+        return 'success'
+    elif sentence == 'Scrutinizing_for':
+        return 'scrutinizing'
+    elif sentence == 'Cache':
+        return 'cache'
 
 #Le unità lessicali ricavate da FrameNet per un determinato frame sono nella forma <ul>.PoS (esempio: before.prep)
 #pertanto, per poter individuare il senso o i sensi corrispondenti all'unità lessicale, è importante rimuovere
@@ -207,7 +196,6 @@ def remove_pos_lu(lexical_unit_name):
     return new_lexical_unit_name.split(" [")[0]
 
 
-    
 """Funzioni di supporto"""
 
 #il pre-processing consiste nella tokenizzazione, lemmatizzazione,

@@ -13,6 +13,7 @@ import annotations
 
 SURNAME = 'Altamura'
 
+#Restituisce una lista di ContextsFrame
 def get_contexts_frames_list(frames):
     contexts_frames_list = []
     for frame in frames:
@@ -73,7 +74,8 @@ def get_synsets_frames_list(contexts_frame_list):
         
         frame_elements_contexts = contextsFrame.get_frame_elements_contexts()
         for frame_element_name in frame_elements_contexts:
-            wordnet_name = utils.get_regent(frame_element_name)
+            #wordnet_name = utils.get_regent(frame_element_name)
+            wordnet_name = frame_element_name
             score = compute_score(wordnet_name, frame_elements_contexts[frame_element_name])
             if not score is None:
                frame_elements_synsets[frame_element_name] = score
@@ -109,8 +111,6 @@ def main():
     print("ANNOTAZIONI UMANE: ")
     for item in synsets_frames_list_annotations:
         item.printSynsetsFrame()
-    
-    
     
     #testing
     utils.total_accuracy(synsets_frames_list, synsets_frames_list_annotations)

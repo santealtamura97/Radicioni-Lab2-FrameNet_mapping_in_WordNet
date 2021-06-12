@@ -13,7 +13,7 @@ import utils
 
 student: Altamura
 	ID:  153	      frame: Process_stopped_state
-	ID:   10          frame: Transitive_action
+	ID:   10      frame: Transitive_action
 	ID: 2411    	  frame: Personal_success
 	ID: 1684    	  frame: Scrutinizing_for
 	ID: 2576	      frame: Cache
